@@ -17,6 +17,16 @@
 				background: #ebebeb;
 			}
 			
+			body>a:link,body>a:visited,body>a:hover,body>a:active {
+				position: fixed;
+				right: 10px;
+				bottom: 10px;
+				display: inline-flex;
+				background: rgba(230, 126, 34, 0.6);
+				color: white;
+				text-decoration: none;
+			}
+
 			nav {
 				margin-bottom: 30px;
 				background: white;
@@ -47,6 +57,7 @@
 			
 			.Navigation li a {
 				text-decoration: none;
+				color: #505050;
 			}
 			
 			.article_head {
@@ -106,17 +117,54 @@
 				border-radius: 10px 10px 10px 10px;
 			}
 			
-			aside div h4 {				
+			aside.aside_nemu div h4 {
 				padding-bottom: 10px;
 				border-bottom: 1px solid #ebebeb;
-				
+				position: relative;
 			}
-			aside div h4:after {
+			
+			aside.aside_nemu>div>h4:after {
 				content: "";
 				width: 90px;
 				padding-bottom: 10px;
 				border-bottom: 1px solid #e67e22;
-				
+				position: absolute;
+				left: 1px;
+				bottom: -1px;
+			}
+			
+			.a_color,
+			.a_color:hover,
+			.a_color:visited,
+			.a_color:active {
+				color: #e67e22;
+			}
+			
+			aside.aside_nemu>div .btn-danger {
+				width: 100%;
+			}
+			
+			.icon-weibo,
+			.icon-comments {
+				text-decoration: none;
+			}
+			
+			.aside_nemu>div {
+				margin-bottom: 30px;
+			}
+			
+			.btn_a_bg a {
+				border: 1px solid #ebebeb;
+				color: #959595;
+				padding: 2px 7px;
+				margin: 3px 5px;
+				display: inline-block;
+			}
+			
+			.btn_a_bg a:hover {
+				background-color: #e67e22;
+				text-decoration: none;
+				color: white;
 			}
 		</style>
 		<script type="text/javascript">
@@ -124,25 +172,43 @@
 				$("#btn").click(function() {
 
 				})
-				//BodyView();
+				BodyView();
 				$("#ul li a").click(function() {
 					if($(this).parent().attr("class") != "disabled") {
 						$("#ul li").removeClass("active");
 						$(this).parent().addClass("active");
 					}
 				})
+				$(window).scroll(function(){
+					if($(this).scrollTop()=="0")
+						$("#top").attr("style","display: none;");
+					else
+						$("#top").attr("style","display: inline-flex;");
+				})
 			})
-			//			function BodyView () {
-			//				for(var i=0;i<=3;i++){
-			//					$("#div_txt").append("<article>/
-			//						<div class='col-lg-4 col-sm-4' style='display: inline-block;background-color: red;'>/
-			//							<div class='col-lg-12 col-sm-12'>Title</div>/
-			//							<div class='col-lg-12 col-sm-12'>Body</div>/
-			//							<div class='col-lg-12 col-sm-12'>Footer</div>/
-			//						</div>/
-			//					</article>");
-			//				}
-			//			}
+
+			function BodyView() {
+
+				for(var i = 0; i <= 3; i++) {
+					$("section main").append("\
+					<article class='active_Body'>\
+						<div class='col-lg-12 col-sm-12'>\
+								<h1 class='col-lg-12 col-sm-12 article_Title'><a href='#'>testtes啊实打实大所大所多ttest</a></h1>\
+								<div class='col-lg-12 col-sm-12 article_Author'>\
+									<span>text: <a href='#' style='color: #e67e22;'>test</a></span> •\
+									<time datetime='2018-2-1 10:49:02' title='2018-2-1 10:49:17'>2018-2-1</time></div>\
+							</div>\
+							<div class='col-lg-12 col-sm-12'>\
+								<p>上周我们 发布 了一个新版本，包含了大家期盼已久的功能：主题模板和网站对本地化的支持。 这个功能完全是由我们的一个贡献者（Juan）开发的，Ghost 基金提供了支持。 我们已经针对这个功能编写了完整的文档，下面就来介绍一下这个功能是如何工作的： 网站本地化 你可以在 Ghos</p>\
+							</div>\
+							<div class='col-lg-12 col-sm-12'>\
+								<a href='#' class='btn btn-danger'>阅读全文</a>\
+							</div>\
+							<footer><i class='icon-folder-open-alt'></i></footer>\
+						</article>");
+				}
+
+			}
 		</script>
 	</head>
 
@@ -200,7 +266,7 @@
 			<div class="container">
 				<div class="row">
 					<main class="col-lg-8 col-sm-8 main">
-						<article class="active_Body">
+						<!--<article class="active_Body">
 							<div class="col-lg-12 col-sm-12">
 								<h1 class="col-lg-12 col-sm-12 article_Title"><a href="#">testtes啊实打实大所大所多ttest</a></h1>
 								<div class="col-lg-12 col-sm-12 article_Author">
@@ -214,29 +280,51 @@
 								<a href="#" class="btn btn-danger">阅读全文</a>
 							</div>
 							<footer><i class="icon-folder-open-alt"></i></footer>
-						</article>
-						<article class="active_Body">
-							<div class="col-lg-12 col-sm-12">
-								<h1 class="col-lg-12 col-sm-12 article_Title"><a href="#">testtes啊实打实大所大所多ttest</a></h1>
-								<div class="col-lg-12 col-sm-12 article_Author">
-									<span>text: <a href="#">test</a></span> •
-									<time datetime="2018-2-1 10:49:02" title="2018-2-1 10:49:17">2018-2-1</time></div>
-							</div>
-							<div class="col-lg-12 col-sm-12">
-								<p>正文</p>
-							</div>
-						</article>
+						</article>-->
 					</main>
-					<aside class="col-lg-4 col-sm-4">
+					<aside class="col-lg-4 col-sm-4 aside_nemu">
 						<div class="col-lg-12 col-sm-12">
 							<h4>社区</h4>
 							<div>
-								<p><i class="icon-comments"></i>问答社区</p>
-								<p><i class="icon-weibo"></i>微博</p>
+								<p>QQ群:12345678</p>
+								<p>
+									<a href="#" class="a_color"><i class="icon-comments"></i> 问答社区</a>
+								</p>
+								<p>
+									<a href="#" class="a_color"><i class="icon-weibo"></i> 微博</a>
+								</p>
 							</div>
 						</div>
-						<div class="col-lg-12 col-sm-12"></div>
-						<div class="col-lg-12 col-sm-12"></div>
+						<div class="col-lg-12 col-sm-12">
+							<h4>下载HTML</h4>
+							<div>
+								<a href="#" class="btn btn-danger">HTML中文版5.0</a>
+							</div>
+						</div>
+						<div class="col-lg-12 col-sm-12">
+							<h4>标签云</h4>
+							<div class="btn_a_bg">
+								<a href="#">客户端</a>
+								<a href="#">Android</a>
+								<a href="#">IOS</a>
+								<a href="#">Windows</a>
+								<a href="#">Microsoft</a>
+								<a href="#">Lunix</a>
+								<a href="#">Support</a>
+								<a href="#">Sharepoint</a>
+								<a href="#">SP2010</a>
+								<a href="#">SP2013</a>
+								<a href="#">Notes</a>
+								<a href="#">HBulider</a>
+								<a href="#">Cisco</a>
+								<a href="#">Andy</a>
+								<a href="#">Jack</a>
+								<a href="#">Victor</a>
+								<a href="#">Felix</a>
+								<a href="#">Angus</a>
+								<a href="#">...</a>
+							</div>
+						</div>
 					</aside>
 				</div>
 			</div>
@@ -245,12 +333,13 @@
 		<footer>
 			<div class="container" style="height: 300px;">
 				<div class="row">
-					<div class="col-lg-4 col-sm-4" style="background-color: red;display: none;">aaa</div>
+					<div class="col-lg-4 col-sm-4" style="background-color: red;display: none;">asdasddddddddddddddddddddddd</div>
 					<div class="col-lg-4 col-sm-4" style="background-color: yellow;display: none;">sss</div>
 					<div class="col-lg-4 col-sm-4" style="background-color: green;display: none;">ddd</div>
 				</div>
 			</div>
 		</footer>
+		<a href="#" id="top"><i class="btn icon-angle-up"></i></a>
 	</body>
 
 </html>
