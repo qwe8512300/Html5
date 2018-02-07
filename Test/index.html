@@ -5,10 +5,13 @@
 		<meta charset="utf-8" />
 		<title>Translate</title>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
 		<link rel="stylesheet" href="Layouts/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="Layouts/css/responsive-nav.css" />
 		<link rel="stylesheet" href="Layouts/Font-Awesome-3.2.1/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="Layouts/font-awesome-4.7.0/css/font-awesome.min.css" />
 		<script src="Layouts/js/jquery-3.3.1.min.js"></script>
 		<script src="Layouts/js/bootstrap.min.js"></script>
 		<script src="Layouts/js/responsive-nav.min.js"></script>
@@ -17,7 +20,10 @@
 				background: #ebebeb;
 			}
 			
-			body>a:link,body>a:visited,body>a:hover,body>a:active {
+			body>a:link,
+			body>a:visited,
+			body>a:hover,
+			body>a:active {
 				position: fixed;
 				right: 10px;
 				bottom: 10px;
@@ -26,7 +32,7 @@
 				color: white;
 				text-decoration: none;
 			}
-
+			
 			nav {
 				margin-bottom: 30px;
 				background: white;
@@ -111,19 +117,20 @@
 				padding: 20px 0px 0px 0px;
 			}
 			
-			aside .col-lg-12 {
+			.aside_menu>div {
 				padding: 30px;
 				background: white;
 				border-radius: 10px 10px 10px 10px;
-			}
+				margin-bottom: 30px;
+			}			
 			
-			aside.aside_nemu div h4 {
+			aside.aside_menu div h4 {
 				padding-bottom: 10px;
 				border-bottom: 1px solid #ebebeb;
 				position: relative;
 			}
 			
-			aside.aside_nemu>div>h4:after {
+			aside.aside_menu div h4:after {
 				content: "";
 				width: 90px;
 				padding-bottom: 10px;
@@ -140,7 +147,7 @@
 				color: #e67e22;
 			}
 			
-			aside.aside_nemu>div .btn-danger {
+			aside.aside_menu .btn-danger {
 				width: 100%;
 			}
 			
@@ -150,7 +157,7 @@
 			}
 			
 			.aside_nemu>div {
-				margin-bottom: 30px;
+				margin: 0px 0px 30px 0px;
 			}
 			
 			.btn_a_bg a {
@@ -166,6 +173,24 @@
 				text-decoration: none;
 				color: white;
 			}
+			
+			#top {
+				display: none;
+				position: fixed;
+				right: 10px;
+				bottom: 10px;
+				text-align: center;
+				background: rgba(230, 126, 34, 0.6);
+				color: white;
+				text-decoration: none;
+				float: right;
+			}
+			
+			#top i {
+				height: 30px;
+				width: 30px;
+				line-height: 30px;
+			}
 		</style>
 		<script type="text/javascript">
 			$(function() {
@@ -179,12 +204,19 @@
 						$(this).parent().addClass("active");
 					}
 				})
-				$(window).scroll(function(){
-					if($(this).scrollTop()=="0")
-						$("#top").attr("style","display: none;");
+				$(window).scroll(function() {
+					
+					if($(this).scrollTop() <= 100)
+						$("#top").attr("style", "display: none;");
 					else
-						$("#top").attr("style","display: inline-flex;");
+						$("#top").attr("style", "display: block;");
 				})
+				$("#top").click(function() {
+					$('html, body').animate({
+						scrollTop: 0
+					}, 1000);
+				})
+
 			})
 
 			function BodyView() {
@@ -210,13 +242,28 @@
 
 			}
 		</script>
+		<script type="text/javascript">
+			var phoneWidth = parseInt(window.screen.width);
+			var phoneScale = phoneWidth / 640;
+			var ua = navigator.userAgent;
+			if(/Android (\d+\.\d+)/.test(ua)) {
+				var version = parseFloat(RegExp.$1);
+				if(version > 2.3) {
+					document.write("<meta name='viewport' content='width=640, minimum-scale = "+phoneScale+", maximum-scale = "+phoneScale+", target-densitydpi=device-dpi'>");  
+				}else{  
+				    document.write("<meta name='viewport' content='width=640, target-densitydpi=device-dpi'>");  
+				    }  
+				} else {  
+				    document.write("<meta name='viewport' content='width=640, user-scalable=no, target-densitydpi=device-dpi'>");  
+				}
+		</script>
 	</head>
 
 	<body>
 		<header id="header">
 			<div class="container">
 				<div class="row">
-					<div>
+					<div class="col-sm-12">
 						<a href="http://www.bootcss.com/">
 							<img src="img/1.jpg" />
 						</a>
@@ -265,7 +312,7 @@
 		<section>
 			<div class="container">
 				<div class="row">
-					<main class="col-lg-8 col-sm-8 main">
+					<main class="col-md-8 main">
 						<!--<article class="active_Body">
 							<div class="col-lg-12 col-sm-12">
 								<h1 class="col-lg-12 col-sm-12 article_Title"><a href="#">testtes啊实打实大所大所多ttest</a></h1>
@@ -282,8 +329,8 @@
 							<footer><i class="icon-folder-open-alt"></i></footer>
 						</article>-->
 					</main>
-					<aside class="col-lg-4 col-sm-4 aside_nemu">
-						<div class="col-lg-12 col-sm-12">
+					<aside class="col-md-4 aside_menu">
+						<div>
 							<h4>社区</h4>
 							<div>
 								<p>QQ群:12345678</p>
@@ -295,13 +342,13 @@
 								</p>
 							</div>
 						</div>
-						<div class="col-lg-12 col-sm-12">
+						<div>
 							<h4>下载HTML</h4>
 							<div>
 								<a href="#" class="btn btn-danger">HTML中文版5.0</a>
 							</div>
 						</div>
-						<div class="col-lg-12 col-sm-12">
+						<div>
 							<h4>标签云</h4>
 							<div class="btn_a_bg">
 								<a href="#">客户端</a>
@@ -339,7 +386,7 @@
 				</div>
 			</div>
 		</footer>
-		<a href="#" id="top"><i class="btn icon-angle-up"></i></a>
+		<a href="#" id="top"><i class="fa fa-angle-up"></i></a>
 	</body>
 
 </html>
